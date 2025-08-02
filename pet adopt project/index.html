@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PetCare | Adopt Love</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #fefefe;
+      color: #333;
+    }
+
+    header {
+      background: linear-gradient(135deg, #f9d423 0%, #ff4e50 100%);
+      padding: 80px 20px 60px;
+      text-align: center;
+      color: white;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: white;
+      padding: 16px 40px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    nav .logo {
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: #ff4e50;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 20px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #444;
+      font-weight: 500;
+      padding: 8px 16px;
+      border-radius: 12px;
+      transition: background 0.3s;
+    }
+
+    nav ul li a:hover, nav ul li a.active {
+      background: #ff4e50;
+      color: white;
+    }
+    
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.18);
+            box-shadow: 0 8px 32px #ff4e5044, 0 0 0 4px #fffde7;
+            padding: 0 40px;
+            border-radius: 24px;
+            border-bottom: 4px solid #ff4e50;
+            position: relative;
+            z-index: 10;
+            animation: navbarFadeIn 1.2s cubic-bezier(.68,-0.55,.27,1.55);
+            backdrop-filter: blur(12px);
+            margin: 18px 24px 0 24px;
+        }
+        @keyframes navbarFadeIn {
+            0% { opacity: 0; transform: translateY(-40px) scaleX(0.8); }
+            100% { opacity: 1; transform: translateY(0) scaleX(1); }
+        }
+        .navbar .logo {
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: #ff4e50;
+            letter-spacing: 2.5px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-shadow: 2px 2px 12px #fffde7;
+            animation: logoPop 1.2s cubic-bezier(.68,-0.55,.27,1.55);
+        }
+        .navbar .logo img {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            box-shadow: 0 2px 12px #fffde7;
+            border: 2px solid #ff4e50;
+            background: #fff;
+        }
+        @keyframes logoPop {
+            0% { transform: scale(0.7) rotate(-10deg); opacity: 0; }
+            80% { transform: scale(1.1) rotate(8deg); opacity: 1; }
+            100% { transform: scale(1) rotate(0deg); }
+        }
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+            gap: 8px;
+        }
+        .navbar ul li {
+            margin: 0 10px;
+            position: relative;
+            transition: transform 0.2s;
+        }
+        .navbar ul li:hover {
+            transform: scale(1.12) translateY(-4px);
+        }
+        .navbar ul li a {
+            text-decoration: none;
+            color: #ff4e50;
+            font-size: 1.15rem;
+            font-weight: 600;
+            padding: 10px 22px;
+            border-radius: 18px;
+            background: rgba(255,255,255,0.6);
+            box-shadow: 0 2px 12px #ff4e5044;
+            transition: color 0.2s, background 0.2s, box-shadow 0.2s, border 0.2s;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 2px solid #fff0;
+            animation: navLinkFadeIn 1.2s cubic-bezier(.68,-0.55,.27,1.55);
+        }
+        @keyframes navLinkFadeIn {
+            0% { opacity: 0; transform: translateY(-20px) scaleX(0.8); }
+            100% { opacity: 1; transform: translateY(0) scaleX(1); }
+        }
+        .navbar ul li a:hover, .navbar ul li a.active {
+            color: #fff;
+            background: linear-gradient(90deg, #ff4e50 0%, #f9d423 100%);
+            box-shadow: 0 8px 32px #ff4e5088;
+            border: 2px solid #ff4e50;
+            transform: scale(1.12);
+        }
+
+
+    .animal-section {
+      max-width: 1100px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+
+    .animal-section h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      color: #333;
+      margin-bottom: 40px;
+    }
+
+    .animal-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .animal-card {
+      background: white;
+      border-radius: 18px;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+      overflow: hidden;
+      transition: transform 0.3s;
+    }
+
+    .animal-card:hover {
+      transform: translateY(-6px);
+    }
+
+    .animal-img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+
+    .animal-info {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .animal-info h3 {
+      margin-bottom: 10px;
+      color: #ff4e50;
+    }
+
+    .animal-info p {
+      font-size: 0.95rem;
+      margin-bottom: 16px;
+      color: #555;
+    }
+
+    .animal-info .btn {
+      padding: 10px 24px;
+      border: none;
+      background: #ff4e50;
+      color: white;
+      font-weight: bold;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .animal-info .btn:hover {
+      background: #f7333b;
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2.2rem;
+      }
+
+      .animal-section {
+        margin: 40px auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+        <nav class="navbar">
+        <div class="logo">
+            <img src="https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=facearea&w=80&h=80" alt="PetCare Logo">
+            PetCare
+        </div>
+        <ul>
+            <li><a href="index.html" class="active"><img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="Home" style="width:22px;height:22px;"> Home</a></li>
+            <li><a href="adopt.html"><img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="Adopt" style="width:22px;height:22px;"> Adopt</a></li>
+            <li><a href="donate.html"><img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="Donate" style="width:22px;height:22px;"> Donate</a></li>
+            <li><a href="about.html"><img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="About" style="width:22px;height:22px;"> About</a></li>
+            <li><a href="contact.html"><img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="Contact" style="width:22px;height:22px;"> Contact</a></li>
+        </ul>
+    </nav>
+
+
+  <header>
+    <h1>Adopt. Care. Love.</h1>
+    <p>Discover the joy of pet adoption. Bring home a loyal companion and make a difference today.</p>
+  </header>
+
+  <section
+   class="animal-section">
+    <h2>Meet Our Pets</h2>
+    <div class="animal-grid">
+      <div class="animal-card">
+        <img class="animal-img" src=" https://images.pexels.com/photos/3777622/pexels-photo-3777622.jpeg?cs=srgb&dl=pexels-just-a-couple-photos-3777622.jpg&fm=jpg  " alt="Kitten">
+        <div class="animal-info">
+          <h3>Kitten</h3>
+          <p>Playful, cuddly, and irresistibly cute. Kittens bring warmth and joy to every home.</p>
+          <button class="btn">Adopt</button>
+        </div>
+      </div>
+      <div class="animal-card">/w
+        <img class="animal-img" src="   https://www.bing.com/images/search?q=pet+images&id=07088E9D2959385AECCB8DB2CFE0E6707C906DFC&FORM=IACFIR" alt=Dog">
+        <div class="animal-info">
+          <h3>Dog</h3>
+          <p>Faithful, friendly, and full of energy. Dogs are perfect companions for all ages.</p>
+          <button class="btn">Adopt</button>
+        </div>
+      </div>
+        <img class="animal-img" src="   https://www.bing.com/images/search?q=pet+images&id=07088E9D2959385AECCB8DB2CFE0E6707C906DFC&FORM=IACFIR" 
+
+        alt="Puppy">
+
+        <div class="animal-info">
+          <h3>Puppy</h3>
+          <p>Small in size but huge in love. Puppies need training and give back endless love.</p>
+          <button class="btn">Adopt</button>
+        </div>
+      </div>
+      <div class="animal-card">
+        <img class="animal-img" src="https://www.bing.com/images/search?q=cat+images&id=79842088F47B28AC2389C8D1E4E742745D0CCD83&FORM=IACFIR" alt="Cat">
+        <div class="animal-info">
+          <h3>Cat</h3>
+          <p>Independent yet affectionate. Cats make calm and loving companions for every home.</p>
+          <button class="btn">Adopt</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
