@@ -185,7 +185,105 @@
             border: 2px solid #ff4e50;
             transform: scale(1.12);
         }
-
+        .donation-life-heading {
+            color: #ff4e50;
+            margin-top: 32px;
+            font-size: 1.8rem;
+            text-align: center;
+        }
+        .donation-life-para {
+            color: #333;
+            text-align: center;
+            margin-bottom: 24px;
+            font-size: 1.1rem;
+        }
+        .donation-options-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            justify-content: center;
+            margin-bottom: 24px;
+        }
+        .donation-option {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+            padding: 16px;
+            text-align: center;
+            flex: 1 1 120px;
+            transition: transform 0.2s;
+        }
+        .donation-option:hover {
+            transform: translateY(-4px);
+        }
+        .donation-option img {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 8px;
+        }
+        .donation-option button {
+            background: #ffb347;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .donation-option button:hover {
+            background: #fff;
+            color: #ffb347;
+            border: 1px solid #ffb347;
+        }
+        .general-donations-heading {
+            color: #ff4e50;
+            margin-top: 32px;
+            font-size: 1.8rem;
+            text-align: center;
+        }
+        .donation-table-wrapper {
+            overflow-x: auto;
+            margin-bottom: 24px;
+        }
+        .donation-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 16px;
+        }
+        .donation-table th, .donation-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        .donation-table th {
+            background: #ffb347;
+            color: #fff;
+            font-weight: bold;
+        }
+        .donation-table tr:hover {
+            background: #f1f1f1;
+        }
+        .amt {
+            font-weight: bold;
+            color: #ff4e50;
+        }
+        .support-btn {
+            background: #ff4e50;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .support-btn:hover {
+            background: #fff;
+            color: #ff4e50;
+            border: 1px solid #ff4e50;
+        }
     </style>
 </head>
 <body>
@@ -208,7 +306,87 @@
     <section class="section">
         <h2>Donate for a Cause</h2>
         <p>Your donation helps us provide food, shelter, and medical care to pets in need. Every contribution makes a difference!</p>
-        <form class="donate-form">
+
+        <!-- New Section: Donation Saves Lives -->
+        <h2 class="donation-life-heading">Donation Saves Lives for Animals</h2>
+        <p class="donation-life-para">
+            Every rupee you contribute brings hope and happiness to countless animals in need. Your support helps us rescue, feed, and care for abandoned pets, giving them a second chance at life. Join us in making a real difference!
+        </p>
+
+        <!-- Donation Options -->
+        <div class="donation-options-container">
+            <div class="donation-option">
+                <img src="https://cdn-icons-png.flaticon.com/512/633/633611.png" alt="Credit Card">
+                <button>Credit Card</button>
+            </div>
+            <div class="donation-option">
+                <img src="https://cdn-icons-png.flaticon.com/512/633/633606.png" alt="Debit Card">
+                <button>Debit Card</button>
+            </div>
+            <div class="donation-option">
+                <img src="https://cdn-icons-png.flaticon.com/512/3062/3062634.png" alt="Cheque">
+                <button>Cheque</button>
+            </div>
+            <div class="donation-option">
+                <img src="https://cdn-icons-png.flaticon.com/512/196/196566.png" alt="UPI/Other">
+                <button>UPI & More</button>
+            </div>
+        </div>
+
+        <!-- General Donations Table -->
+        <h3 class="general-donations-heading">General Donations</h3>
+        <div class="donation-table-wrapper">
+            <table class="donation-table">
+                <thead>
+                    <tr>
+                        <th>Animal</th>
+                        <th>Care Type</th>
+                        <th>Duration</th>
+                        <th>Amount (INR)</th>
+                        <th>Support</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Cat</td>
+                        <td>Food & Shelter</td>
+                        <td>Per Month</td>
+                        <td><span class="amt">₹2,000</span></td>
+                        <td><button class="support-btn">Support</button></td>
+                    </tr>
+                    <tr>
+                        <td>Dog</td>
+                        <td>Medical Care</td>
+                        <td>Per Month</td>
+                        <td><span class="amt">₹2,500</span></td>
+                        <td><button class="support-btn">Support</button></td>
+                    </tr>
+                    <tr>
+                        <td>Rabbit</td>
+                        <td>Vaccination</td>
+                        <td>Per Year</td>
+                        <td><span class="amt">₹1,200</span></td>
+                        <td><button class="support-btn">Support</button></td>
+                    </tr>
+                    <tr>
+                        <td>Bird</td>
+                        <td>Rescue & Care</td>
+                        <td>Per Month</td>
+                        <td><span class="amt">₹800</span></td>
+                        <td><button class="support-btn">Support</button></td>
+                    </tr>
+                    <tr>
+                        <td>Cow</td>
+                        <td>Nutrition</td>
+                        <td>Per Month</td>
+                        <td><span class="amt">₹3,000</span></td>
+                        <td><button class="support-btn">Support</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <form class="donate-form" id="donateForm">
             <input type="text" placeholder="Your Name" required>
             <input type="email" placeholder="Your Email" required>
             <input type="number" placeholder="Amount (INR)" min="1" required>
@@ -219,5 +397,13 @@
     <footer class="footer">
         &copy; 2025 PetCare. All rights reserved.
     </footer>
+
+    <script>
+        // Simple JS for Donate Now button
+        document.getElementById('donateForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your generous donation! Your support helps save animal lives.');
+        });
+    </script>
 </body>
 </html>
