@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Contact Us | PetCare</title>
+    <style>
+        :root{
+            --accent:#ff4e50;
+            --accent-dark:#185a9d;
+            --glass: rgba(255,255,255,0.18);
+            --surface:#fff;
+            --max-width:1100px;
+            --radius:18px;
+            --gap:18px;
+            --ease: 0.18s;
+        }
+        *{box-sizing:border-box}
+        body{
+            margin:0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg,#43cea2 0%, #185a9d 100%);
+            min-height:100vh;
+            -webkit-font-smoothing:antialiased;
+            color:#222;
+        }
+
+        /* NAVBAR */
+        .navbar{
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            gap:12px;
+            width:calc(100% - 48px);
+            max-width:var(--max-width);
+            margin:18px auto 0;
+            padding:10px 18px;
+            background:var(--glass);
+            border-radius:24px;
+            border-bottom:4px solid var(--accent);
+            box-shadow:0 8px 32px rgba(255,78,80,0.27), 0 0 0 4px #fffde7;
+            backdrop-filter: blur(10px);
+            position:relative;
+            z-index:10;
+        }
+        .logo{
+            display:flex;
+            align-items:center;
+            gap:12px;
+            color:var(--accent);
+            font-weight:800;
+            letter-spacing:2px;
+            font-size:1.4rem;
+            text-shadow:2px 2px 12px #fffde7;
+        }
+        .logo img{
+            width:38px;height:38px;border-radius:50%;border:2px solid var(--accent);background:#fff;
+            box-shadow:0 2px 12px #fffde7;
+        }
+        .nav-toggle{
+            display:none;
+            background:transparent;
+            border:none;
+            font-size:1.6rem;
+            color:var(--accent);
+            cursor:pointer;
+        }
+        .navbar ul{
+            list-style:none;
+            display:flex;
+            gap:10px;
+            margin:0;
+            padding:0;
+            align-items:center;
+        }
+        .navbar ul li{ margin:0; transition:transform var(--ease); }
+        .navbar ul li a{
+            display:inline-flex;
+            gap:8px;
+            align-items:center;
+            text-decoration:none;
+            color:var(--accent);
+            background: rgba(255,255,255,0.6);
+            padding:8px 14px;
+            border-radius:14px;
+            font-weight:600;
+            box-shadow:0 2px 12px rgba(255,78,80,0.27);
+            transition: transform var(--ease), background var(--ease), color var(--ease);
+        }
+        .navbar ul li a img{ width:20px;height:20px; display:inline-block; }
+        .navbar ul li a:hover, .navbar ul li a.active{
+            background: linear-gradient(90deg,var(--accent) 0%, #f9d423 100%);
+            color:#fff;
+            transform: translateY(-3px) scale(1.03);
+            box-shadow:0 8px 32px rgba(255,78,80,0.45);
+            border:2px solid var(--accent);
+        }
+
+        /* CONTACT SECTION */
+        .section{
+            background:var(--surface);
+            width:calc(100% - 48px);
+            max-width:720px;
+            margin:28px auto;
+            padding:32px;
+            border-radius:16px;
+            box-shadow:0 2px 16px rgba(0,0,0,0.08);
+        }
+        .section h2{ color:var(--accent-dark); margin:0 0 12px; font-size:1.6rem; }
+        .contact-grid{
+            display:grid;
+            grid-template-columns: 1fr 320px;
+            gap:20px;
+            align-items:start;
+        }
+        .contact-form{
+            display:flex;
+            flex-direction:column;
+            gap:12px;
+            max-width:100%;
+        }
+        .contact-form input, .contact-form textarea{
+            padding:10px;
+            border-radius:8px;
+            border:1px solid var(--accent-dark);
+            font-size:1rem;
+            width:100%;
+        }
+        .contact-form button{
+            background:var(--accent-dark);
+            color:#fff;
+            border:none;
+            padding:12px;
+            border-radius:8px;
+            font-size:1.05rem;
+            font-weight:700;
+            cursor:pointer;
+            transition: background var(--ease), color var(--ease), transform var(--ease);
+        }
+        .contact-form button:hover{
+            background:#fff;
+            color:var(--accent-dark);
+            border:1px solid var(--accent-dark);
+            transform: translateY(-2px);
+        }
+        .contact-details{
+            background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.98));
+            border-radius:12px;
+            padding:16px;
+            box-shadow:0 4px 16px rgba(0,0,0,0.04);
+            color:var(--accent-dark);
+            font-size:0.98rem;
+        }
+        .contact-details p{ margin:8px 0; }
+
+        .footer{
+            background:var(--surface);
+            color:var(--accent);
+            text-align:center;
+            padding:16px 8px;
+            margin:28px 0 40px;
+            box-shadow:0 -2px 8px rgba(0,0,0,0.06);
+            width:100%;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width:1000px){
+            .section{ padding:24px; margin:20px 16px; }
+            .contact-grid{ grid-template-columns: 1fr 260px; gap:16px; }
+        }
+        @media (max-width:700px){
+            .nav-toggle{ display:inline-flex; }
+            .navbar ul{
+                position:absolute;
+                top:72px;
+                right:18px;
+                background: rgba(255,255,255,0.96);
+                flex-direction:column;
+                align-items:flex-start;
+                padding:10px;
+                gap:8px;
+                border-radius:10px;
+                box-shadow:0 12px 40px rgba(0,0,0,0.12);
+                display:none;
+                min-width:160px;
+                z-index:20;
+            }
+            .navbar.open ul{ display:flex; }
+            .navbar{ padding:10px 14px; margin:14px; }
+            .section{ margin:16px; padding:18px; border-radius:12px; }
+            .contact-grid{ grid-template-columns: 1fr; }
+            .contact-details{ order:2; width:100%; }
+            .contact-form{ order:1; }
+        }
+        @media (max-width:420px){
+            .navbar{ margin:12px; padding:10px; border-radius:14px; }
+            .navbar ul{ right:12px; top:64px; min-width:140px; }
+            .section{ padding:14px; }
+            .contact-form button{ padding:10px; font-size:1rem; }
+        }
+
+    </style>
+</head>
+<body>
+    <nav class="navbar" aria-label="Primary navigation">
+        <div class="logo">
+            <img src="https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=facearea&w=80&h=80" alt="PetCare Logo">
+            PetCare
+        </div>
+
+        <button class="nav-toggle" aria-expanded="false" aria-label="Toggle navigation">☰</button>
+
+        <ul>
+            <li><a href="home.html" class="active"><img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="Home" style="width:18px;height:18px"> Home</a></li>
+            <li><a href="adopt.html"><img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="Adopt" style="width:18px;height:18px"> Adopt</a></li>
+            <li><a href="donate.html"><img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="Donate" style="width:18px;height:18px"> Donate</a></li>
+            <li><a href="about.html"><img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="About" style="width:18px;height:18px"> About</a></li>
+            <li><a href="contact.html"><img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="Contact" style="width:18px;height:18px"> Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="section" aria-labelledby="contact-heading">
+        <h2 id="contact-heading">Contact Us</h2>
+
+        <div class="contact-grid">
+            <form class="contact-form" aria-label="Contact form" id="contactForm">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+
+            <div class="contact-details" aria-hidden="false">
+                <p><strong>Email:</strong> shivani@petcare.com</p>
+                <p><strong>Phone:</strong> +91 9800 43210</p>
+                <p><strong>Address:</strong> 123, Pet Street, Ambala City, India</p>
+                <p style="margin-top:12px;font-size:0.95rem;color:#555;">
+                    We're available Monday — Saturday, 9:00 AM — 6:00 PM. We'll respond as soon as possible.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">&copy; 2025 PetCare. All rights reserved.</footer>
+
+    <script>
+        (function(){
+            const nav = document.querySelector('.navbar');
+            const toggle = document.querySelector('.nav-toggle');
+            const links = nav.querySelectorAll('ul li a');
+
+            toggle.addEventListener('click', () => {
+                const isOpen = nav.classList.toggle('open');
+                toggle.setAttribute('aria-expanded', String(isOpen));
+            });
+
+            links.forEach(a => a.addEventListener('click', () => {
+                if (nav.classList.contains('open')) {
+                    nav.classList.remove('open');
+                    toggle.setAttribute('aria-expanded','false');
+                }
+            }));
+
+            const form = document.getElementById('contactForm');
+            form.addEventListener('submit', function(e){
+                e.preventDefault();
+                const name = form.name.value.trim();
+                const email = form.email.value.trim();
+                const message = form.message.value.trim();
+                if (!name || !email || !message) {
+                    alert('Please fill in all fields.');
+                    return;
+                }
+                if (!/^\S+@\S+\.\S+$/.test(email)) {
+                    alert('Please enter a valid email address.');
+                    return;
+                }
+                form.reset();
+                alert('Thank you for contacting PetCare! We will get back to you soon.');
+            });
+        })();
+    </script>
+</body>
+</html>

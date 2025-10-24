@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Adoption & Donation</title>
+    <style>
+        :root{
+            --accent:#ff4e50;
+            --accent-2:#f9d423;
+            --glass: rgba(255,255,255,0.18);
+            --surface:#fff;
+            --max-width:1100px;
+            --radius:18px;
+        }
+        *{box-sizing:border-box}
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, var(--accent-2) 0%, var(--accent) 100%);
+            min-height: 100vh;
+            -webkit-font-smoothing:antialiased;
+            color:#222;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            width:calc(100% - 48px);
+            max-width:var(--max-width);
+            margin:18px auto 0;
+            padding:10px 18px;
+            background:var(--glass);
+            border-radius:24px;
+            border-bottom:4px solid var(--accent);
+            box-shadow:0 8px 32px rgba(255,78,80,0.27), 0 0 0 4px #fffde7;
+            backdrop-filter: blur(10px);
+            gap:12px;
+        }
+        .logo{
+            display:flex;
+            align-items:center;
+            gap:10px;
+            color:var(--accent);
+            font-weight:700;
+            letter-spacing:2px;
+            font-size:1.6rem;
+            text-shadow:2px 2px 12px #fffde7;
+        }
+        .logo img{ width:40px;height:40px;border-radius:50%;border:2px solid var(--accent); background:#fff; }
+
+        .nav-toggle{
+            display:none;
+            background:transparent;
+            border:none;
+            font-size:1.6rem;
+            color:var(--accent);
+            cursor:pointer;
+        }
+        nav ul{
+            list-style:none;
+            display:flex;
+            gap:10px;
+            margin:0;
+            padding:0;
+            align-items:center;
+        }
+        nav ul li a{
+            text-decoration:none;
+            color:var(--accent);
+            background:rgba(255,255,255,0.6);
+            padding:8px 16px;
+            border-radius:16px;
+            font-weight:600;
+            display:inline-flex;
+            gap:8px;
+            align-items:center;
+            transition:transform .18s, background .18s, color .18s, box-shadow .18s;
+            box-shadow:0 2px 12px rgba(255,78,80,0.18);
+        }
+        nav ul li a:hover, nav ul li a.active{
+            background: linear-gradient(90deg,var(--accent) 0%, var(--accent-2) 100%);
+            color:#fff;
+            transform:translateY(-3px) scale(1.03);
+            box-shadow:0 8px 32px rgba(255,78,80,0.45);
+            border:2px solid var(--accent);
+        }
+
+        /* HERO */
+        .hero{
+            width:calc(100% - 48px);
+            max-width:var(--max-width);
+            margin:28px auto;
+            padding:36px;
+            border-radius:var(--radius);
+            background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+            color:#fff;
+            text-align:center;
+            box-shadow:0 8px 32px rgba(0,0,0,0.08);
+        }
+        .hero-inner{
+            display:flex;
+            gap:28px;
+            align-items:center;
+            justify-content:center;
+            flex-wrap:wrap;
+        }
+        .hero-text{
+            max-width:560px;
+        }
+        .hero h1{ font-size:2.8rem; margin:0 0 10px; text-shadow:2px 2px 8px rgba(0,0,0,0.18); }
+        .hero p{ font-size:1.15rem; margin:0 0 18px; color: #fffde7; }
+        .hero a{
+            background:#fff; color:var(--accent); padding:12px 28px; border-radius:30px; font-weight:700; text-decoration:none;
+            box-shadow:0 4px 12px rgba(0,0,0,0.12);
+            display:inline-block;
+        }
+        .hero img{
+            width:420px;
+            max-width:45%;
+            height:auto;
+            border-radius:16px;
+            box-shadow:0 8px 32px rgba(0,0,0,0.12);
+            object-fit:cover;
+        }
+
+        /* SECTIONS */
+        .section{
+            background:var(--surface);
+            width:calc(100% - 48px);
+            max-width:900px;
+            margin:28px auto;
+            padding:32px;
+            border-radius:18px;
+            box-shadow:0 2px 16px rgba(0,0,0,0.08);
+        }
+        .section h2{ color:var(--accent); margin:0 0 12px; }
+        .pets{
+            display:flex;
+            flex-wrap:wrap;
+            gap:30px;
+            justify-content:center;
+        }
+        .pet-card{
+            background: linear-gradient(135deg, #fff3d7 0%, #ffd6c2 100%);
+            border-radius:14px;
+            width:220px;
+            padding:18px;
+            text-align:center;
+            box-shadow:0 4px 12px rgba(0,0,0,0.06);
+            transition:transform .18s;
+        }
+        .pet-card img{ width:100px;height:100px;border-radius:50%;object-fit:cover;border:3px solid #fff;margin-bottom:10px;}
+        .pet-card h3{ margin:8px 0 6px; color:#d23a3a; }
+        .donate-form{ max-width:420px; margin:0 auto; display:flex; flex-direction:column; gap:14px; }
+        .donate-form input, .donate-form textarea{ padding:10px;border-radius:8px;border:1px solid var(--accent); }
+
+        .footer{
+            background:var(--surface);
+            color:var(--accent);
+            text-align:center;
+            padding:18px 8px;
+            margin:28px 0 40px;
+            box-shadow:0 -2px 8px rgba(0,0,0,0.06);
+            width:100%;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width:1000px){
+            .hero h1{ font-size:2.4rem; }
+            .hero img{ max-width:48%; width:360px; }
+            .hero-inner{ gap:18px; }
+        }
+        @media (max-width:700px){
+            .nav-toggle{ display:inline-flex; }
+            nav ul{
+                position:absolute;
+                top:70px;
+                right:24px;
+                background: rgba(255,255,255,0.96);
+                flex-direction:column;
+                align-items:flex-start;
+                padding:10px;
+                gap:8px;
+                border-radius:12px;
+                box-shadow:0 12px 40px rgba(0,0,0,0.12);
+                display:none;
+                min-width:160px;
+                z-index:15;
+            }
+            .navbar.open ul{ display:flex; }
+            .hero{
+                padding:18px;
+            }
+            .hero-inner{ flex-direction:column-reverse; }
+            .hero img{ width:92%; max-width:420px; }
+            .hero h1{ font-size:1.9rem; }
+            .hero p{ font-size:1rem; }
+            .section{ margin:16px; padding:20px; }
+            .pets{ flex-direction:column; align-items:center; gap:18px; }
+            .pet-card{ width:92%; max-width:420px; }
+            .logo{ font-size:1.2rem; }
+        }
+        @media (max-width:420px){
+            .navbar{ margin:12px; padding:10px; border-radius:14px; }
+            nav ul{ right:12px; top:62px; min-width:140px; }
+            .hero h1{ font-size:1.6rem; }
+            .hero p{ font-size:0.95rem; }
+            .hero a{ padding:10px 16px; font-size:0.95rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar" role="navigation" aria-label="Primary">
+        <div class="logo">
+            <img src="https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=facearea&w=80&h=80" alt="logo">
+            PetCare
+        </div>
+        <button class="nav-toggle" aria-expanded="false" aria-label="Toggle navigation">☰</button>
+        <ul>
+            <li><a href="home.html" class="active">Home</a></li>
+            <li><a href="adopt.html">Adopt</a></li>
+            <li><a href="donate.html">Donate</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero" role="banner">
+        <div class="hero-inner">
+            <div class="hero-text">
+                <h1>Welcome to PetCare</h1>
+                <p>Find your new best friend or help a pet in need. Adopt, donate, and make a difference today!</p>
+                <a href="adopt.html">Adopt a Pet</a>
+            </div>
+            <img src="animal.jpg" alt="Pet background image">
+        </div>
+    </section>
+
+    <section class="section" aria-labelledby="why-adopt">
+        <h2 id="why-adopt">Why Adopt?</h2>
+        <p>Adopting a pet saves lives and brings joy to your home. Our pets are waiting for a loving family like yours!</p>
+    </section>
+
+    <section class="section" aria-labelledby="how-help">
+        <h2 id="how-help">How to Help?</h2>
+        <p>You can help by adopting, donating, or volunteering. Every little bit counts in making a pet's life better.</p>
+
+        <div class="pets" aria-live="polite">
+            <div class="pet-card">
+                <img src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&fit=crop&w=400&q=60" alt="Bella">
+                <h3>Bella</h3>
+                <p>2 years old • Labrador</p>
+            </div>
+            <div class="pet-card">
+                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=60" alt="Milo">
+                <h3>Milo</h3>
+                <p>1 year old • Persian</p>
+            </div>
+            <div class="pet-card">
+                <img src="https://images.unsplash.com/photo-1558788353-f76d92427f16?auto=format&fit=crop&w=400&q=60" alt="Rex">
+                <h3>Rex</h3>
+                <p>3 years old • Beagle</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">&copy; 2025 PetCare. All rights reserved.</footer>
+
+    <script>
+        (function(){
+            const nav = document.querySelector('.navbar');
+            const toggle = document.querySelector('.nav-toggle');
+            const links = document.querySelectorAll('nav ul li a');
+
+            toggle.addEventListener('click', () => {
+                const open = nav.classList.toggle('open');
+                toggle.setAttribute('aria-expanded', String(open));
+            });
+
+            links.forEach(a => a.addEventListener('click', () => {
+                if (nav.classList.contains('open')) {
+                    nav.classList.remove('open');
+                    toggle.setAttribute('aria-expanded','false');
+                }
+            }));
+        })();
+    </script>
+</body>
+</html>

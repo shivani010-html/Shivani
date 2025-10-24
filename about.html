@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Animals | PetCare</title>
+    <style>
+        :root{
+            --accent:#ff4e50;
+            --accent-2:#00b4d8;
+            --glass: rgba(255,255,255,0.18);
+            --surface:#fff;
+            --max-width:1100px;
+            --radius:18px;
+            --gap:24px;
+            --ease:0.18s;
+        }
+
+        *{box-sizing:border-box}
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            min-height: 100vh;
+            -webkit-font-smoothing:antialiased;
+            color: #0b3b46;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            gap:12px;
+            width:calc(100% - 48px);
+            max-width:var(--max-width);
+            margin:18px auto 0;
+            padding:10px 18px;
+            background:var(--glass);
+            border-radius:24px;
+            border-bottom:4px solid var(--accent);
+            box-shadow:0 8px 32px rgba(255,78,80,0.18), 0 0 0 4px #fffde7;
+            backdrop-filter: blur(10px);
+            position:relative;
+            z-index:10;
+        }
+        .navbar .logo{
+            display:flex;
+            align-items:center;
+            gap:12px;
+            color:var(--accent);
+            font-weight:800;
+            letter-spacing:2px;
+            font-size:1.4rem;
+            text-shadow:2px 2px 8px #fffde7;
+        }
+        .navbar .logo img{
+            width:38px;height:38px;border-radius:50%;border:2px solid var(--accent);background:#fff;
+            box-shadow:0 2px 12px #fffde7;
+        }
+
+        .nav-toggle{
+            display:none;
+            background:transparent;
+            border:none;
+            font-size:1.6rem;
+            color:var(--accent);
+            cursor:pointer;
+        }
+
+        .navbar ul{
+            list-style:none;
+            display:flex;
+            gap:8px;
+            margin:0;
+            padding:0;
+            align-items:center;
+        }
+        .navbar ul li {
+            margin:0 6px;
+            transition: transform var(--ease);
+        }
+        .navbar ul li a {
+            text-decoration:none;
+            color:var(--accent);
+            font-size:1.05rem;
+            font-weight:600;
+            padding:8px 14px;
+            border-radius:14px;
+            background: rgba(255,255,255,0.6);
+            display:flex;
+            align-items:center;
+            gap:8px;
+            box-shadow:0 2px 12px rgba(255,78,80,0.12);
+            transition: transform var(--ease), background var(--ease), color var(--ease);
+        }
+        .navbar ul li a img{ width:20px;height:20px; display:inline-block; }
+        .navbar ul li a:hover, .navbar ul li a.active {
+            background: linear-gradient(90deg, var(--accent) 0%, #f9d423 100%);
+            color:#fff;
+            transform: translateY(-3px) scale(1.03);
+            box-shadow:0 8px 32px rgba(255,78,80,0.25);
+            border:2px solid var(--accent);
+        }
+
+        /* SECTION */
+        .section {
+            background: var(--surface);
+            margin: 40px auto;
+            border-radius: 18px;
+            box-shadow: 0 4px 24px #a8edea88;
+            max-width: 900px;
+            padding: 40px 30px;
+        }
+        .section h2 {
+            color: var(--accent-2);
+            margin-bottom: 18px;
+            font-size: 2.0rem;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+
+        /* ANIMAL GRID */
+        .animal-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 28px;
+            margin-top: 28px;
+        }
+        .animal-card {
+            background: linear-gradient(120deg, #caf0f8 0%, #f1f1f1 100%);
+            border-radius: 16px;
+            box-shadow: 0 2px 16px #00b4d888;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: box-shadow 0.18s, transform 0.18s;
+        }
+        .animal-card:hover {
+            box-shadow: 0 8px 32px #00b4d8cc;
+            transform: translateY(-6px) rotate(-1deg);
+        }
+        .animal-img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 5px solid #00b4d8;
+            box-shadow: 0 4px 18px #a8edea88;
+            margin-bottom: 16px;
+            background: #fff;
+        }
+        .animal-btn {
+            background: linear-gradient(90deg, #48cae4 0%, #90e0ef 100%);
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 12px;
+            padding: 8px 20px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 8px #00b4d888;
+            cursor: pointer;
+            letter-spacing: 0.6px;
+            transition: background 0.18s, transform 0.18s;
+        }
+        .animal-btn:hover {
+            background: linear-gradient(90deg, #90e0ef 0%, #48cae4 100%);
+            color: #0077b6;
+            transform: translateY(-3px) scale(1.04);
+        }
+        .animal-desc {
+            font-size: 1rem;
+            color: #0077b6;
+            text-align: center;
+            margin: 0;
+            font-weight: 500;
+            background: #e0f7fa;
+            border-radius: 10px;
+            padding: 10px 12px;
+            box-shadow: 0 2px 8px #90e0ef44;
+            width:100%;
+        }
+
+        /* RESPONSIVE RULES */
+        @media (max-width:1000px){
+            .section { padding: 28px 22px; margin:32px 16px; }
+            .animal-grid { gap: 20px; }
+        }
+        @media (max-width:700px){
+            .nav-toggle{ display:inline-flex; }
+            .navbar ul{
+                position: absolute;
+                top: 66px;
+                right: 14px;
+                background: rgba(255,255,255,0.98);
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 10px;
+                gap: 8px;
+                border-radius: 12px;
+                box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+                display: none;
+                min-width: 160px;
+                z-index: 30;
+            }
+            .navbar.open ul { display:flex; }
+            .navbar { padding:10px 14px; margin:14px; }
+            .section { margin: 18px; padding: 18px; border-radius:12px; }
+            .animal-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            .animal-img { width: 110px; height: 110px; }
+            .section h2 { font-size:1.6rem; }
+        }
+        @media (max-width:420px){
+            .navbar { margin:12px; padding:10px; border-radius:12px; }
+            .navbar ul { right: 10px; top:58px; min-width:140px; }
+            .animal-img { width: 92px; height: 92px; }
+            .animal-desc { font-size:0.95rem; padding:8px; }
+            .animal-btn { padding:8px 16px; font-size:0.95rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar" aria-label="Primary navigation">
+        <div class="logo">
+            <img src="animal.jpg" alt="PetCare Logo">
+            PetCare
+        </div>
+
+        <button class="nav-toggle" aria-expanded="false" aria-label="Toggle navigation">☰</button>
+
+        <ul>
+            <li><a href="home.html"><img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="Home"> Home</a></li>
+            <li><a href="adopt.html"><img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="Adopt"> Adopt</a></li>
+            <li><a href="donate.html"><img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="Donate"> Donate</a></li>
+            <li><a href="about.html" class="active"><img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="About"> About</a></li>
+            <li><a href="contact.html"><img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="Contact"> Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="section" aria-labelledby="meet-heading">
+        <h2 id="meet-heading">Meet Our Animals</h2>
+
+        <div class="animal-grid">
+            <div class="animal-card">
+                <img class="animal-img" src="https://www.bing.com/th/id/OIP.g1m0K7yumfwkc_ub224a4AHaE7?w=276&h=211&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2" alt="Kitten">
+                <button class="animal-btn">Kitten</button>
+                <p class="animal-desc">Kittens are playful, curious, and love to explore. Their tiny purrs and big eyes will melt your heart!</p>
+            </div>
+            <div class="animal-card">
+                <img class="animal-img" src="https://images.unsplash.com/photo-1558788353-f76d92427f16?auto=format&fit=facearea&w=400&h=400" alt="Dog">
+                <button class="animal-btn">Dog</button>
+                <p class="animal-desc">Dogs are loyal and loving companions, always ready for a walk, a cuddle, and a lifetime of friendship.</p>
+            </div>
+            <div class="animal-card">
+                <img class="animal-img" src="https://www.bing.com/th/id/OIP.FxnlDIdhbj_7C2qKC9ZvBwHaE6?w=275&h=211&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2" alt="Puppy">
+                <button class="animal-btn">Puppy</button>
+                <p class="animal-desc">Puppies are bundles of energy and joy, eager to learn new tricks and shower you with affection every day.</p>
+            </div>
+            <div class="animal-card">
+                <img class="animal-img" src="https://www.bing.com/th/id/OIP.FxnlDIdhbj_7C2qKC9ZvBwHaE6?w=275&h=211&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2" alt="Cat">
+                <button class="animal-btn">Cat</button>
+                <p class="animal-desc">Cats are graceful and gentle, loving cozy naps and offering purrs that bring peace and comfort to your home.</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        (function(){
+            const nav = document.querySelector('.navbar');
+            const toggle = document.querySelector('.nav-toggle');
+            const links = nav.querySelectorAll('ul li a');
+
+            toggle.addEventListener('click', () => {
+                const isOpen = nav.classList.toggle('open');
+                toggle.setAttribute('aria-expanded', String(isOpen));
+            });
+
+            links.forEach(a => a.addEventListener('click', () => {
+                if (nav.classList.contains('open')) {
+                    nav.classList.remove('open');
+                    toggle.setAttribute('aria-expanded','false');
+                }
+            }));
+        })();
+    </script>
+</body>
+</html>

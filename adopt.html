@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adopt a Pet | PetCare</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #43cea2 0%, #185a9d 100%);
+            min-height: 100vh;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.18);
+            box-shadow: 0 8px 32px #ff4e5044, 0 0 0 4px #fffde7;
+            padding: 0 20px;
+            border-radius: 24px;
+            border-bottom: 4px solid #ff4e50;
+            position: relative;
+            z-index: 10;
+            animation: navbarFadeIn 1.2s cubic-bezier(.68,-0.55,.27,1.55);
+            backdrop-filter: blur(12px);
+            margin: 18px 24px 0 24px;
+            gap: 12px;
+        }
+        @keyframes navbarFadeIn {
+            0% { opacity: 0; transform: translateY(-40px) scaleX(0.8); }
+            100% { opacity: 1; transform: translateY(0) scaleX(1); }
+        }
+        .navbar .logo {
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: #ff4e50;
+            letter-spacing: 2.5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-shadow: 2px 2px 12px #fffde7;
+        }
+        .navbar .logo img {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            box-shadow: 0 2px 12px #fffde7;
+            border: 2px solid #ff4e50;
+            background: #fff;
+        }
+        .nav-toggle {
+            display: none;
+            background: transparent;
+            border: none;
+            font-size: 1.6rem;
+            color: #ff4e50;
+            cursor: pointer;
+        }
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+            gap: 8px;
+            align-items: center;
+        }
+        .navbar ul li {
+            margin: 0 10px;
+            position: relative;
+            transition: transform 0.15s;
+        }
+        .navbar ul li a {
+            text-decoration: none;
+            color: #ff4e50;
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 8px 14px;
+            border-radius: 14px;
+            background: rgba(255,255,255,0.6);
+            box-shadow: 0 2px 12px #ff4e5044;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 2px solid transparent;
+        }
+        .navbar ul li a:hover, .navbar ul li a.active {
+            color: #fff;
+            background: linear-gradient(90deg, #ff4e50 0%, #f9d423 100%);
+            box-shadow: 0 8px 32px #ff4e5088;
+            border: 2px solid #ff4e50;
+            transform: scale(1.03);
+        }
+
+        .section {
+            background: #fff;
+            margin: 24px auto;
+            border-radius: 18px;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+            max-width: 1000px;
+            padding: 32px;
+        }
+        .section h2 {
+            color: #185a9d;
+            margin-bottom: 18px;
+            font-size: 1.6rem;
+        }
+        .pets {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            justify-content: center;
+        }
+        .pet-card {
+            background: linear-gradient(135deg, #43cea2 0%, #185a9d 100%);
+            color: #fff;
+            border-radius: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+            width: 220px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.18s;
+            flex: 0 0 220px;
+        }
+        .pet-card:hover {
+            transform: translateY(-6px) scale(1.03);
+        }
+        .pet-card img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 12px;
+            border: 3px solid #fff;
+        }
+        .pet-card h3 {
+            margin: 10px 0 6px 0;
+            text-transform: capitalize;
+        }
+        .pet-card p {
+            margin: 0 0 10px 0;
+            font-size: 0.98rem;
+        }
+        .pet-card a {
+            background: #fff;
+            color: #185a9d;
+            padding: 8px 22px;
+            border-radius: 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            text-decoration: none;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+            transition: background 0.18s, color 0.18s;
+            display: inline-block;
+        }
+        .pet-card a:hover {
+            background: #185a9d;
+            color: #fff;
+        }
+
+        .footer {
+            background: #fff;
+            color: #185a9d;
+            text-align: center;
+            padding: 18px 0;
+            font-size: 1.1rem;
+            margin-top: 24px;
+            box-shadow: 0 -2px 8px rgba(0,0,0,0.06);
+        }
+
+        /* Responsive rules */
+        @media (max-width: 1000px) {
+            .pet-card {
+                flex: 0 0 calc(50% - 32px);
+                width: calc(50% - 32px);
+            }
+            .section {
+                padding: 24px;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .nav-toggle {
+                display: inline-flex;
+            }
+            .navbar ul {
+                position: absolute;
+                top: 66px;
+                right: 18px;
+                background: rgba(255,255,255,0.95);
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 12px;
+                gap: 6px;
+                border-radius: 12px;
+                box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+                display: none;
+                min-width: 160px;
+            }
+            .navbar.open ul {
+                display: flex;
+            }
+            .navbar ul li {
+                margin: 0;
+                width: 100%;
+            }
+            .navbar ul li a {
+                width: 100%;
+                padding: 10px 12px;
+                background: transparent;
+                box-shadow: none;
+                color: #185a9d;
+            }
+            .navbar .logo {
+                font-size: 1.2rem;
+            }
+            .section {
+                margin: 16px;
+                padding: 18px;
+                border-radius: 12px;
+            }
+            .pets {
+                flex-direction: column;
+                gap: 16px;
+                align-items: center;
+            }
+            .pet-card {
+                width: 92%;
+                flex: 0 0 92%;
+                padding: 16px;
+            }
+            .pet-card img {
+                width: 88px;
+                height: 88px;
+            }
+        }
+
+        /* Tweak very small screens */
+        @media (max-width: 420px) {
+            .navbar ul {
+                right: 12px;
+                top: 60px;
+                min-width: 140px;
+            }
+            .pet-card h3 { font-size: 1.02rem; }
+            .pet-card p { font-size: 0.95rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar" aria-label="Primary">
+        <div class="logo">
+            <img src="https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=facearea&w=80&h=80" alt="PetCare Logo">
+            PetCare
+        </div>
+
+        <button class="nav-toggle" aria-expanded="false" aria-label="Toggle navigation">☰</button>
+
+        <ul>
+            <li><a href="home.html" class="active"><img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="Home" style="width:18px;height:18px;"> Home</a></li>
+            <li><a href="adopt.html"><img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="Adopt" style="width:18px;height:18px;"> Adopt</a></li>
+            <li><a href="donate.html"><img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="Donate" style="width:18px;height:18px;"> Donate</a></li>
+            <li><a href="about.html"><img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="About" style="width:18px;height:18px;"> About</a></li>
+            <li><a href="contact.html"><img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="Contact" style="width:18px;height:18px;"> Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="section">
+        <h2>Meet Our Lovely Pets</h2>
+        <div class="pets">
+            <div class="pet-card">
+                <img src="https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=facearea&w=400&h=400" alt="Dog">
+                <h3>Bella</h3>
+                <p>2 years old | Female | Labrador</p>
+                <a href="#">Adopt</a>
+            </div>
+            <div class="pet-card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlVTWL4dqk9ZokaiRQe0kdV3_dNvkB7A3xTw&s" alt="Cat">
+                <h3>Milo</h3>
+                <p>1 year old | Male | Persian Cat</p>
+                <a href="#">Adopt</a>
+            </div>
+            <div class="pet-card">
+                <img src="https://tse2.mm.bing.net/th/id/OIP.Jf0NnGpH2AhNM3BtwZufwwHaJ4?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Dog">
+                <h3>Rex</h3>
+                <p>3 years old | Male | Beagle</p>
+                <a href="#">Adopt</a>
+            </div>
+            <div class="pet-card">
+                <img src="https://tse1.mm.bing.net/th/id/OIP.TQjs2_m_qVd_J_lVAtHADgHaEo?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Cat">
+                <h3>Luna</h3>
+                <p>4 months old | Female | Siamese Cat</p>
+                <a href="#">Adopt</a>
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+        &copy; 2025 PetCare. All rights reserved.
+    </footer>
+
+    <script>
+        // Simple nav toggle for small screens
+        const nav = document.querySelector('.navbar');
+        const toggle = document.querySelector('.nav-toggle');
+        const navLinks = nav.querySelectorAll('ul li a');
+
+        toggle.addEventListener('click', () => {
+            const isOpen = nav.classList.toggle('open');
+            toggle.setAttribute('aria-expanded', String(isOpen));
+        });
+
+        // Close menu when a nav link is clicked (mobile)
+        navLinks.forEach(a => a.addEventListener('click', () => {
+            if (nav.classList.contains('open')) {
+                nav.classList.remove('open');
+                toggle.setAttribute('aria-expanded', 'false');
+            }
+        }));
+    </script>
+</body>
+</html>
